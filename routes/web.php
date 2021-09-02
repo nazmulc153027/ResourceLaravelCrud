@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ItemController;
+use App\Http\Controllers\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,3 +20,5 @@ use App\Http\Controllers\ItemController;
 // });
 
 Route::resource('/add-item', ItemController::class);
+Route::get('/add-item', [SearchController::class, 'search'])->name('search');
+Route::get('/add-item', [SearchController::class, 'autocomplete'])->name('autocomplete');
