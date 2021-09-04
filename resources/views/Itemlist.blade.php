@@ -18,7 +18,7 @@
 <body>
 
 <div class="container" style="margin-top:70px;">
-<form action="/search" method="get">
+<form action="/add-item" method="get">
 <input type="text" class="" placeholder="Search.." name="search">
 <button type="submit"><i class="fa fa-search"></i></button>
 </form>

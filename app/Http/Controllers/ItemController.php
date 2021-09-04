@@ -16,20 +16,26 @@ class ItemController extends Controller
     public function index()
     {
         //$items= Item::all();
-        $items = Item::paginate(3);
+        $item = new Item();
+       
+        if (!empty(request()->search)) {
+            $search = request()->search;
+            $item = $item->where('name','like','%'.$search.'%');
+        }
+        $items = $item->paginate(3);
         return view('Itemlist',compact('items'));
     }
 
-    public function search(Request $request){
+    // public function search(Request $request){
         
-        $search = $request->get('search');
-        $items = DB::table('items')->where('name','like','%'.$search.'%')->paginate(3);
-        if($items){
-        return view('Itemlist', compact('items'));
-        }else{
-            return redirect('/add-item')->with('message','Data Inserted Successfully');
-        }
-    }
+    //     $search = $request->get('search');
+    //     $items = DB::table('items')->where('name','like','%'.$search.'%')->paginate(3);
+    //     if($items){
+    //     return view('Itemlist', compact('items'));
+    //     }else{
+    //         return redirect('/add-item')->with('message','Data Inserted Successfully');
+    //     }
+    // }
 
     /**
      * Show the form for creating a new resource.
